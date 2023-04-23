@@ -1,5 +1,6 @@
-package("libllvm")
+package("llvm")
 
+    set_kind("toolchain")
     set_homepage("https://llvm.org/")
     set_description("The LLVM Compiler Infrastructure")
 
@@ -39,19 +40,17 @@ package("libllvm")
         add_versions("15.0.7", "8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6")
     end
 
-    add_configs("shared",            {description = "Build shared library.", default = false, type = "boolean", readonly = true})
-    add_configs("mlir",              {description = "Enable mlir project.", default = false, type = "boolean"})
-
+    
 
     on_load(function (package)
         -- add components
-          local components = {"mlir"}
-          for _, name in ipairs(components) do
-              if package:config(name) or package:config("all") then
-                  package:add("components", name, {deps = "base"})
-              end
-          end
-          package:add("components", "base", {default = true})
+        local components = {"mlir"}
+        for _, name in ipairs(components) do
+            if package:config(name) or package:config("all") then
+                package:add("components", name, {deps = "base"})
+             end
+        end
+        package:add("components", "base", {default = true})
     end)
 
     on_fetch("fetch")
@@ -66,23 +65,40 @@ package("libllvm")
         }
         local projects_enabled = {}
         for _, project in ipairs(projects) do
-          if package:config(project) then
-              table.insert(projects_enabled, project)
-          end
+            if package:config(project) then
+                table.insert(projects_enabled, project)
+            end
         end
-        
+
         local configs = {
             "-DCMAKE_BUILD_TYPE=Release",
+            "-DLLVM_ENABLE_PROJECTS=" .. table.concat(projects_enabled, ";"),
             "-DLLVM_LINK_LLVM_DYLIB=ON",
             "-DLLVM_ENABLE_EH=ON",
             "-DLLVM_ENABLE_FFI=ON",
             "-DLLVM_ENABLE_RTTI=ON",
             "-DLLVM_INCLUDE_DOCS=OFF",
+            "-DLLVM_INCLUDE_TESTS=OFF",
+            "-DLLVM_INSTALL_UTILS=ON",
             "-DLLVM_OPTIMIZED_TABLEGEN=ON",
+            "-DLLVM_TARGETS_TO_BUILD=all",
+            "-DLLDB_USE_SYSTEM_DEBUGSERVER=ON",
+            "-DLLDB_ENABLE_PYTHON=OFF",
+            "-DLLDB_ENABLE_LUA=OFF",
+            "-DLLDB_ENABLE_LZMA=OFF",
+            "-DLIBOMP_INSTALL_ALIASES=OFF"
         }
         os.cd("llvm")
         import("package.tools.cmake").install(package, configs)
     end)
 
     on_component("mlir",      "components.mlir")
+    on_component("clang",     "components.clang")
+    on_component("libunwind", "components.libunwind")
     on_component("base",      "components.base")
+
+    on_test(function (package)
+      if not package:is_plat("windows") then
+        os.vrun("llvm-config --version")
+      end
+    end)
