@@ -38,26 +38,9 @@ package("libllvm")
         add_versions("14.0.0", "35ce9edbc8f774fe07c8f4acdf89ec8ac695c8016c165dd86b8d10e7cba07e23")
         add_versions("15.0.7", "8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6")
     end
-
-    
-
-    on_load(function (package)
-        -- add components
-        local components = {"mlir"}
-        for _, name in ipairs(components) do
-            if package:config(name) or package:config("all") then
-                package:add("components", name, {deps = "base"})
-             end
-        end
-        package:add("components", "base", {default = true})
+    on_load("linux", function (package)
+      package:add("links", "LLVM")
     end)
-
-    on_fetch("fetch")
-
-    on_install("macosx", "windows", "msys", "bsd", function (package)
-        os.cp("*", package:installdir())
-    end)
-
     on_install("linux", function (package)
         local configs = {
             "-DCMAKE_BUILD_TYPE=Release",
@@ -71,9 +54,6 @@ package("libllvm")
         os.cd("llvm")
         import("package.tools.cmake").install(package, configs)
     end)
-
-    on_component("mlir",      "components.mlir")
-    on_component("base",      "components.base")
 
     on_test(function (package)
       if not package:is_plat("windows") then
