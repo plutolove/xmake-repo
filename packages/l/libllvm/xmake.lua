@@ -73,8 +73,6 @@ package("libllvm")
     end)
 
     on_component("mlir",      "components.mlir")
-    on_component("clang",     "components.clang")
-    on_component("libunwind", "components.libunwind")
     on_component("base",      "components.base")
 
     on_test(function (package)
