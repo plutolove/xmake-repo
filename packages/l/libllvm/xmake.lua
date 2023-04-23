@@ -45,15 +45,13 @@ package("libllvm")
 
     on_load(function (package)
         -- add components
-        if package:is_library() then
-            local components = {"mlir", "clang", "libunwind"}
-            for _, name in ipairs(components) do
-                if package:config(name) or package:config("all") then
-                    package:add("components", name, {deps = "base"})
-                end
-            end
-            package:add("components", "base", {default = true})
-        end
+          local components = {"mlir"}
+          for _, name in ipairs(components) do
+              if package:config(name) or package:config("all") then
+                  package:add("components", name, {deps = "base"})
+              end
+          end
+          package:add("components", "base", {default = true})
     end)
 
     on_fetch("fetch")
