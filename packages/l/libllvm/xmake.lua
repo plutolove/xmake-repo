@@ -56,7 +56,7 @@ package("libllvm")
     end)
 
     on_test(function (package)
-      if not package:is_plat("windows") then
+      if not package:is_plat("linux") then
         os.vrun("llvm-config --version")
       end
     end)
