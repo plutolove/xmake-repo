@@ -47,6 +47,7 @@ package("libllvm")
     -- end)
     on_load(function (package)
       package:addenv("LLVM_ROOT", package:installdir())
+      package:envs()
     end)
     on_install("linux", function (package)
         local configs = {
