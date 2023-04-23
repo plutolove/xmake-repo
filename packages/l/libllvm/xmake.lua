@@ -61,7 +61,7 @@ package("libllvm")
     on_install("linux", function (package)
         local configs = {
             "-DCMAKE_BUILD_TYPE=Release",
-            "-DLLVM_ENABLE_PROJECTS=\"mlir\"",
+            "-DLLVM_ENABLE_PROJECTS=mlir",
             "-DLLVM_LINK_LLVM_DYLIB=ON",
             "-DLLVM_ENABLE_ASSERTIONS=ON",
             "-DLLVM_INSTALL_UTILS=ON",
