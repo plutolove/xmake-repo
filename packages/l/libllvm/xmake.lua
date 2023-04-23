@@ -38,7 +38,8 @@ package("libllvm")
         add_versions("14.0.0", "35ce9edbc8f774fe07c8f4acdf89ec8ac695c8016c165dd86b8d10e7cba07e23")
         add_versions("15.0.7", "8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6")
     end
-    
+    add_deps("cmake")
+    add_includedirs("include")
     on_load("linux", function (package)
       package:add("links", "LLVM")
     end)
