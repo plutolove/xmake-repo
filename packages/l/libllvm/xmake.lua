@@ -40,7 +40,7 @@ package("libllvm")
     end
     
     on_load("linux", function (package)
-      add_links("LLVM")
+      package:add("links", "LLVM")
     end)
 
     on_install("linux", function (package)
