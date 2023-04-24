@@ -87,13 +87,6 @@ package("libllvm")
             "-DLLVM_INSTALL_UTILS=ON",
             "-DLLVM_ENABLE_EH=ON",
             "-DLLVM_ENABLE_RTTI=ON",
-            "-DLLVM_INCLUDE_DOCS=OFF",
-            "-DLLVM_INCLUDE_TESTS=OFF",
-            "-DLLVM_ENABLE_Z3_SOLVER=OFF",
-            "-DLLDB_ENABLE_PYTHON=OFF",
-            "-DLLDB_ENABLE_LUA=OFF",
-            "-DLLDB_ENABLE_LZMA=OFF",
-            "-DLIBOMP_INSTALL_ALIASES=OFF"
         }
         os.cd("llvm")
         import("package.tools.cmake").install(package, configs)
