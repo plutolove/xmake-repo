@@ -45,13 +45,7 @@ package("libllvm")
     -- on_load("linux", function (package)
     --   package:add("links", "LLVM")
     -- end)
-    on_load(function (package)
-      package:setenv("LLVM_ROOT", package:installdir())
-      package:envs()
-      os.setenv("LLVM_ROOT", package:installdir())
-      print(package)
-      print(package:installdir())
-    end)
+  
     on_install("linux", function (package)
         local configs = {
             "-DCMAKE_BUILD_TYPE=Release",
