@@ -88,7 +88,7 @@ package("libllvm")
             "-DLLVM_INSTALL_UTILS=ON",
             "-DLLVM_ENABLE_EH=ON",
             "-DLLVM_ENABLE_RTTI=ON",
-            "-DLLVM_TARGETS_TO_BUILD=\"X86;NVPTX;AMDGPU\""
+            "-DLLVM_TARGETS_TO_BUILD=X86;NVPTX;AMDGPU"
         }
         os.cd("llvm")
         import("package.tools.cmake").install(package, configs)
