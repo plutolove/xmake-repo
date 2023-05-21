@@ -5,7 +5,7 @@ package("antlr4")
 
     add_urls("https://github.com/plutolove/antlr4_cpp/archive/refs/tags/$(version).tar.gz", 
              "https://github.com/plutolove/antlr4_cpp")
-    add_versions("v4.12.0", "a3bc0ce53dbdb0b72edab7143273defc18481aab285d2a57375eb2a041fece43")
+    add_versions("v4.12.0", "161690afbc968846ea28e04e27f501895f9353278ef34108c58c31849571de9b")
     add_deps("cmake")
     add_links("libantlr4-runtime")
     on_install("macosx", "linux", "windows", function (package)
