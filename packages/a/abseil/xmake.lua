@@ -33,8 +33,7 @@ package("abseil")
         "absl_random_internal_randen_hwaes",
         "absl_graphcycles_internal", "absl_exponential_biased", "absl_bad_variant_access", "absl_statusor",
         "absl_random_internal_distribution_test_util", "absl_random_internal_platform",
-        "absl_hashtablez_sampler", "absl_demangle_internal", "absl_leak_check", "absl_log_internal_format", "absl_log_internal_log_sink_set", "absl_log_internal_message", "absl_log_severity",
-        "absl_log_sink", "absl_raw_logging_internal",
+        "absl_hashtablez_sampler", "absl_demangle_internal", "absl_leak_check", "absl_log_severity", "absl_raw_logging_internal",
         "absl_strerror", "absl_examine_stack", "absl_low_level_hash", "absl_random_seed_gen_exception", "absl_civil_time",
         "absl_crc_cord_state", "absl_crc32c", "absl_crc_cpu_detect", "absl_crc_internal")
 
@@ -54,7 +53,6 @@ package("abseil")
         table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
         table.insert(configs, "-DBUILD_SHARED_LIBS=" .. (package:config("shared") and "ON" or "OFF"))
         import("package.tools.cmake").install(package, configs, {buildir = os.tmpfile() .. ".dir"})
-        os.vrun("cd "..package:installdir("lib").." && ls libabsl_*.a | xargs -n1 ar x && ar cru libabseil.a *.o && ranlib libabseil.a")
     end)
 
     on_test(function (package)
