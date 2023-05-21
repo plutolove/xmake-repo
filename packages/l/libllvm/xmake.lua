@@ -37,6 +37,7 @@ package("libllvm")
         add_versions("11.0.0", "b7b639fc675fa1c86dd6d0bc32267be9eb34451748d2efd03f674b773000e92b")
         add_versions("14.0.0", "35ce9edbc8f774fe07c8f4acdf89ec8ac695c8016c165dd86b8d10e7cba07e23")
         add_versions("15.0.7", "8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6")
+        add_versions("16.0.4", "cf3c2a1152ed7a99866bd7f12c24528ada6d9f6336afb7a08416938762004c9f")
     end
     
     add_deps("cmake")
