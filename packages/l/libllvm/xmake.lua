@@ -93,7 +93,7 @@ package("libllvm")
         }
         os.cd("llvm")
         import("package.tools.cmake").install(package, configs)
-        os.rm(package:installdir("lib/*.so"))
+        os.rm(package:installdir("lib/*.a"))
     end)
 
     on_test(function (package)
