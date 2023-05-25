@@ -9,6 +9,7 @@ package("antlr4")
     add_deps("cmake")
     add_links("libantlr4-runtime")
     on_install("macosx", "linux", "windows", function (package)
+        local configs = {"-DANTLR_BUILD_CPP_TESTS=OFF"}
         import("package.tools.cmake").install(package, configs, {buildir = os.tmpfile() .. ".dir"})
         os.rm(package:installdir("include/gmock"))
         os.rm(package:installdir("include/gtest"))
