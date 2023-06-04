@@ -7,7 +7,7 @@ package("antlr4")
              "https://github.com/plutolove/antlr4_cpp")
     add_versions("v4.12.0", "161690afbc968846ea28e04e27f501895f9353278ef34108c58c31849571de9b")
     add_deps("cmake")
-    add_links("libantlr4-runtime")
+    add_links("antlr4-runtime")
     on_install("macosx", "linux", "windows", function (package)
         local configs = {"-DANTLR_BUILD_CPP_TESTS=OFF"}
         import("package.tools.cmake").install(package, configs, {buildir = os.tmpfile() .. ".dir"})
