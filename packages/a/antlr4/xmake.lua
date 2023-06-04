@@ -11,7 +11,4 @@ package("antlr4")
     on_install("macosx", "linux", "windows", function (package)
         local configs = {"-DANTLR_BUILD_CPP_TESTS=OFF"}
         import("package.tools.cmake").install(package, configs, {buildir = os.tmpfile() .. ".dir"})
-        os.rm(package:installdir("include/gmock"))
-        os.rm(package:installdir("include/gtest"))
-        os.rm(package:installdir("lib/libg*"))
     end)
