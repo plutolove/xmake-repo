@@ -33,11 +33,9 @@ package("libllvm")
             add_versions("14.0.0", "81f49eb466ce9149335ac8918a5f02fa724d562a94464ed13745db0165b4a220")
         end
     else
-        set_urls("https://github.com/llvm/llvm-project/releases/download/llvmorg-$(version)/llvm-project-$(version).src.tar.xz")
-        add_versions("11.0.0", "b7b639fc675fa1c86dd6d0bc32267be9eb34451748d2efd03f674b773000e92b")
-        add_versions("14.0.0", "35ce9edbc8f774fe07c8f4acdf89ec8ac695c8016c165dd86b8d10e7cba07e23")
-        add_versions("15.0.7", "8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6")
-        add_versions("16.0.4", "cf3c2a1152ed7a99866bd7f12c24528ada6d9f6336afb7a08416938762004c9f")
+        set_urls("https://github.com/plutolove/llvm-project/archive/refs/tags/llvmorg-$(version).tar.gz")
+        add_versions("15.0.7-fix", "1794e4d9824d6dd63a9b1032a562dd694c42c359968eb0efb313e5d392500e5e")
+        add_versions("16.0.6-fix", "b56198aec5ae81dcbfa6c5edecbf17a0fcb1966a9f7ea2b6141af89e10c30454")
     end
     
     add_deps("cmake")
