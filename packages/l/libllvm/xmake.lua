@@ -40,7 +40,7 @@ package("libllvm")
     
     add_deps("cmake")
     add_includedirs("include")
-    add_links("LLVM","MLIR")
+    add_links("LLVM","MLIR", "LTO", "mlir_async_runtime", "mlir_c_runner_utils", "mlir_cuda_runtime", "mlir_runner_utils", "Remarks")
     -- add_links("LLVM", "MLIRAnalysis", "MLIRPresburger", "MLIRAffineToStandard", "MLIRArithmeticToLLVM", 
     --           "MLIRArithmeticToSPIRV", "MLIRArmNeon2dToIntr", "MLIRAsyncToLLVM", "MLIRBufferizationToMemRef", 
     --           "MLIRComplexToLLVM", "MLIRComplexToStandard", "MLIRGPUToGPURuntimeTransforms", "MLIRGPUToNVVMTransforms", 
