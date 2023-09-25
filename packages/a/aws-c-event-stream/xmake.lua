@@ -1,16 +1,16 @@
-package("aws-checksums")
-    set_homepage("https://github.com/awslabs/aws-checksums")
-    set_description("Cross platform HW accelerated CRC32c and CRC32 with fallback to efficient SW implementations - C interface with language bindings for AWS SDKs")
+package("aws-c-event-stream")
+    set_homepage("https://github.com/awslabs/aws-c-event-stream")
+    set_description("C99 implementation of the vnd.amazon.eventstream content-type.")
     set_license("Apache-2.0")
 
-    add_urls("https://github.com/awslabs/aws-checksums/archive/refs/tags/$(version).tar.gz",
-             "https://github.com/awslabs/aws-checksums.git")
+    add_urls("https://github.com/awslabs/aws-c-event-stream/archive/refs/tags/$(version).tar.gz",
+             "https://github.com/awslabs/aws-c-event-stream.git")
 
-    add_versions("v0.1.17", "83c1fbae826631361a529e9565e64a942c412baaec6b705ae5da3f056b97b958")
+    add_versions("v0.3.2", "3134b35a45e9f9d974c2b78ee44fd2ea0aebc04df80236b80692aa63bee2092e")
 
     add_configs("asan", {description = "Enable Address Sanitize.", default = false, type = "boolean"})
 
-    add_deps("cmake", "aws-c-common")
+    add_deps("cmake", "aws-c-common", "aws-c-io", "aws-checksums")
 
     on_install("windows|x64", "windows|x86", "linux", "macosx", "bsd", "msys", "cross", function (package)
         local cmakedir = package:dep("aws-c-common"):installdir("lib", "cmake")
@@ -29,5 +29,5 @@ package("aws-checksums")
     end)
 
     on_test(function (package)
-        assert(package:has_cfuncs("aws_checksums_crc32", {includes = "aws/checksums/crc.h"}))
+        assert(package:has_cfuncs("aws_event_stream_library_init", {includes = "aws/event-stream/event_stream.h"}))
     end)
