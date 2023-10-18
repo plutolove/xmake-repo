@@ -87,7 +87,7 @@ package("libllvm")
             "-DLLVM_INSTALL_UTILS=ON",
             "-DLLVM_ENABLE_EH=ON",
             "-DLLVM_ENABLE_RTTI=ON",
-            "-DLLVM_TARGETS_TO_BUILD=X86;NVPTX;AMDGPU",
+            "-DLLVM_TARGETS_TO_BUILD=all",
             "-DMLIR_ENABLE_CUDA_RUNNER=ON"
         }
         os.cd("llvm")
