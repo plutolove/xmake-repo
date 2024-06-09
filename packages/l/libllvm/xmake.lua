@@ -33,10 +33,14 @@ package("libllvm")
             add_versions("14.0.0", "81f49eb466ce9149335ac8918a5f02fa724d562a94464ed13745db0165b4a220")
         end
     else
-        set_urls("https://github.com/plutolove/llvm-project/archive/refs/tags/llvmorg-$(version).tar.gz")
-        add_versions("15.0.7-fix", "1794e4d9824d6dd63a9b1032a562dd694c42c359968eb0efb313e5d392500e5e")
-        add_versions("16.0.6-fix", "b56198aec5ae81dcbfa6c5edecbf17a0fcb1966a9f7ea2b6141af89e10c30454")
-        add_versions("17.0.1", "d51b10be66c10a6a81f4c594b554ffbf1063ffbadcb810af37d1f88d6e0b49dd")
+        set_urls("https://github.com/llvm/llvm-project/releases/download/llvmorg-$(version)/llvm-project-$(version).src.tar.xz")
+        add_versions("11.0.0", "b7b639fc675fa1c86dd6d0bc32267be9eb34451748d2efd03f674b773000e92b")
+        add_versions("14.0.0", "35ce9edbc8f774fe07c8f4acdf89ec8ac695c8016c165dd86b8d10e7cba07e23")
+        add_versions("15.0.7", "8b5fcb24b4128cf04df1b0b9410ce8b1a729cb3c544e6da885d234280dedeac6")
+        add_versions("16.0.5", "37f540124b9cfd4680666e649f557077f9937c9178489cea285a672e714b2863")
+        add_versions("16.0.6", "ce5e71081d17ce9e86d7cbcfa28c4b04b9300f8fb7e78422b1feb6bc52c3028e")
+        add_versions("17.0.6", "58a8818c60e6627064f312dbf46c02d9949956558340938b71cf731ad8bc0813")
+        add_versions("18.1.1", "8f34c6206be84b186b4b31f47e1b52758fa38348565953fad453d177ef34c0ad")
     end
     
     add_deps("cmake")
@@ -88,8 +92,7 @@ package("libllvm")
             "-DLLVM_INSTALL_UTILS=ON",
             "-DLLVM_ENABLE_EH=ON",
             "-DLLVM_ENABLE_RTTI=ON",
-            "-DLLVM_TARGETS_TO_BUILD=X86;NVPTX;AMDGPU",
-            "-DMLIR_ENABLE_CUDA_RUNNER=ON"
+            "-DLLVM_TARGETS_TO_BUILD=X86;NVPTX;AMDGPU"
         }
         os.cd("llvm")
         import("package.tools.cmake").install(package, configs)
