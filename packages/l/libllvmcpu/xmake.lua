@@ -37,6 +37,7 @@ package("libllvmcpu")
         add_versions("15.0.7-fix", "1794e4d9824d6dd63a9b1032a562dd694c42c359968eb0efb313e5d392500e5e")
         add_versions("16.0.6-fix", "b56198aec5ae81dcbfa6c5edecbf17a0fcb1966a9f7ea2b6141af89e10c30454")
         add_versions("17.0.1", "d51b10be66c10a6a81f4c594b554ffbf1063ffbadcb810af37d1f88d6e0b49dd")
+        add_versions("18.1.8", "dad24392e622aab1d95863b1d53b83751c5ce2be06f42eb030997eaa0ba6d397")
     end
     
     add_deps("cmake")
